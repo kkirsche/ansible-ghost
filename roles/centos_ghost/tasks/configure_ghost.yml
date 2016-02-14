@@ -1,0 +1,23 @@
+---
+
+- name: Copy Systemd Ghost service
+  copy:
+    src: ghost.service
+    dest: /usr/lib/systemd/system/ghost.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Reload systemctl
+  command: systemctl daemon-reload
+
+- name: NPM install Ghost for production
+  npm:
+    path: /var/www/ghost
+    production: yes
+    executable: /usr/bin/npm
+
+- name: Start Ghost
+  service:
+    name: ghost
+    state: restarted

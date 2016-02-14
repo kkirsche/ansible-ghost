@@ -1,0 +1,31 @@
+---
+
+- name: Create Ghost directory
+  file:
+    path: '{{ ghost_directory }}'
+    state: directory
+
+- name: Download Ghost
+  get_url:
+    url: https://ghost.org/zip/ghost-latest.zip
+    dest: /tmp/ghost-latest.zip
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install unzip utility
+  yum:
+    name: unzip
+    state: latest
+    update_cache: yes
+
+- name: Unarchive Ghost
+  unarchive:
+    copy: no
+    src: /tmp/ghost-latest.zip
+    dest: '{{ ghost_directory }}'
+
+- name: Remove Ghost archive file
+  file:
+    path: /tmp/ghost-latest.zip
+    state: absent

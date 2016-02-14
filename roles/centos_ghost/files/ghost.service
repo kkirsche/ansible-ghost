@@ -1,0 +1,18 @@
+[Unit]
+Description=The Ghost Blogging Platform
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+User=root
+
+StandardOutput=syslog
+    StandardError=syslog
+SyslogIdentifier=ghost
+SyslogFacility=local0
+WorkingDirectory=/var/www/ghost
+ExecStart=/usr/bin/npm start --production
+PrivateNetworks=true
+
+[Install]
+WantedBy=multi-user.target

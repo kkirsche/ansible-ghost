@@ -1,0 +1,3 @@
+- include: install_ghost.yml
+- include: install_ghost_dependencies.yml
+- include: configure_ghost.yml

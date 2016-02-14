@@ -1,0 +1,19 @@
+---
+
+- name: Install EPEL (Extra Packages for Enterprise Linux) Release
+  yum:
+    name: epel-release
+    state: latest
+    update_cache: yes
+
+- name: Install NodeJS
+  yum:
+    name: nodejs
+    state: latest
+    update_cache: yes
+
+- name: Install NPM
+  yum:
+    name: npm
+    state: latest
+    update_cache: yes
